@@ -1,0 +1,65 @@
+<domain type='kvm'>
+    <name>dpdk-pvsched</name>
+    <memory unit='GiB'>60</memory>
+
+    <vcpu>128</vcpu>
+
+    <os>
+        <type arch='aarch64' machine='virt'>hvm</type>
+        <loader readonly='yes' type='pflash'>place_holder_xml/binary/QEMU_EFI-pflash.raw</loader>
+        <nvram template='place_holder_xml/binary/vars-template-pflash.raw'>place_holder_xml/binary/test-vm6_VARS.fd</nvram>
+    </os>
+    <features>
+        <acpi/>
+        <gic version='3'/>
+    </features>
+    <cpu mode='host-passthrough'/>
+    <iothreads>1</iothreads>
+    <clock offset='utc'/>
+    <on_poweroff>destroy</on_poweroff>
+    <on_reboot>restart</on_reboot>
+    <on_crash>restart</on_crash>
+    <devices>
+        <emulator>place_holder_xml/qemu-ae/aarch64-softmmu/qemu-system-aarch64</emulator>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='qcow2'/>
+            <source file='place_holder_xml/image/rootfs.qcow2'/>
+            <target dev='vda' bus='virtio'/>
+            <boot order='1'/>
+        </disk>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source file='place_holder_xml/image/vm-kernel-xtq.img'/>
+            <target dev='vdb' bus='virtio'/>
+        </disk>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source file='place_holder_xml/image/vm-kernel-xtq-1.img'/>
+            <target dev='vdc' bus='virtio'/>
+        </disk>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source file='place_holder_xml/image/vm-kernel-xtq-2.img'/>
+            <target dev='vdd' bus='virtio'/>
+        </disk>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source file='place_holder_xml/image/vm-kernel-xtq-3.img'/>
+            <target dev='vde' bus='virtio'/>
+        </disk>
+        <disk type='file' device='disk'>
+            <driver name='qemu' type='raw'/>
+            <source file='place_holder_xml/image/vm-kernel-xtq-4.img'/>
+            <target dev='vdf' bus='virtio'/>
+        </disk>
+        <interface type='bridge'>
+            <source bridge='br0'/>
+            <model type='virtio'/>
+            <mac address='52:54:00:57:16:2c' />
+        </interface>
+        <console type='pty'/>
+        <video>
+            <model type='virtio'/>
+        </video>
+    </devices>
+</domain>

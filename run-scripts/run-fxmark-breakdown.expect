@@ -1,0 +1,38 @@
+#!/usr/bin/expect -f
+
+set timeout 100000
+spawn ./run-scripts/virsh-pload-sca.sh
+
+
+expect {
+    "vm41 login:" {
+        send "root\r"
+        exp_continue
+    }
+    "Password:" {
+        send "123\r"
+    }
+    timeout {
+        send_user "Error: 超时错误\n"
+        exit 1
+    }
+}
+
+expect "#" 
+send "./mount.sh && echo id  entifier\r"
+
+
+expect "id entifier" 
+send "cd ~/mnt/fxmark-breakdown && echo ide  ntifier\r"
+
+
+expect "ide ntifier" 
+send "rm *log*\r"
+expect "#"
+send "rm result*\r"
+expect "#"
+send "./all.sh && echo iden  tifier\r"
+
+expect "iden tifier"
+send "sync && poweroff -f \r"
+interact
