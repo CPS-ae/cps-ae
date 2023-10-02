@@ -10,14 +10,10 @@ trap cleanup EXIT
 sudo mount image/vm-kernel-xtq.img mnt
 
 cd mnt/parsec/pload-data-undercommit-motivation/
-
 sudo rm *log*
 sudo rm result*
-
 sudo ./ocean-ncp-scalable.sh-native
-
 sudo ./streamcluster-scalable.sh-native
-
 cd -
 
 sudo umount mnt

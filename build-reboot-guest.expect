@@ -18,7 +18,7 @@ expect {
 }
 
 expect "#" 
-send "./mount.sh && echo id  entifier\r"
+send "mount /dev/vdb mnt && echo id  entifier\r"
 
 
 expect "id entifier" 
