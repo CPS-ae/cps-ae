@@ -3,3 +3,6 @@
 /image
 /qemu-ae
 /linux-host-ae
+/virt-xml/euler-vm4-cg.xml
+/virt-xml/euler-vm4-pload-sca.xml
+/virt-xml/euler-vm4-pload.xml
