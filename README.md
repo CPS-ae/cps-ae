@@ -3,20 +3,20 @@
 This guide is for artifact evaluation (AE) of paper CPS: A Cooperative Para-virtualized Scheduling Framework for Manycore Machines.
 
 <!--ts-->
-* [CPS AE Guide]
-    * [Step 0: Download CPS repository and qemu disk image files]
-    * [Step 1: Configure and build qemu, host kernel, and guest kernel]
-    * [Step 2: automated test(estimated 6 hours) and generate figures]
+* CPS AE Guide
+    * Step 0: Download CPS repository and qemu disk image files
+    * Step 1: Configure and build qemu, host kernel, and guest kernel
+    * Step 2: automated test(estimated 6 hours) and generate figures
 <!--te-->
 
 The performance AE is **push-button** style. All the benchmark applications have been built from source code or will be built during automated testing. 
 
 > Note: The users should expect that AE experiments can reflect that the performance improvement introduced by CPS are consistent with our paper's evaluation. But the users should **NOT** expect these experiments to generate exactly the same raw results as the paper.
 > 
-> Rationale: The central concern of CPS is scheduling, which inherently introduces randomness. For instance, both the host and guest kernel schedulers bring in randomness during task scheduling mechanisms. Additionally, random CPU loads in the background further contribute to this element of unpredictability. Consequently, this randomness leads to variance in the obtained test results. Therefore, when faced with unstable results, it is strongly urged that users conduct multiple test runs to obtain comparatively stable outcomes.
+> Rationale: The central concern of CPS is scheduling, which inherently introduces randomness. For instance, both the host and guest kernel schedulers bring in randomness during task scheduling mechanisms. Additionally, random CPU loads in the background further contribute to this element of unpredictability. Consequently, this randomness leads to variance in the obtained test results. Therefore, when faced with unstable results, we strongly hope that users rerun tests to obtain comparatively stable outcomes.
 
 ## Step 0: Download CPS repository and qemu disk image files
-This step Download all the files to the right location.
+This step downloads all the files to the appropriate location.
 
 
 First, clone the AE scripts repository.
@@ -25,13 +25,14 @@ cd ~
 git clone https://github.com/CPS-ae/cps-ae.git
 ```
 Second, move qemu disk image files to cps-ae/image/.
-The qemu disk image files are provided in the home directory of our AE machine. Therefore,
+The qemu disk image files are provided in the home directory of our AE machine. 
+
+(Optional) However, You can find the same disk image files on https://zenodo.org/deposit/8397857 and https://zenodo.org/deposit/8397999
 ```bash
 mkdir -p ~/cps-ae/image
 mv ~/rootfs.qcow2 ~/cps-ae/image
 mv ~/vm-image-xtq.img ~/cps-ae/image
 ```
-(Optional) You can find the disk image files on https://zenodo.org/deposit/8397857 and https://zenodo.org/deposit/8397999
 
 Finally, use scripts to download CPS source code.
 ```
@@ -40,18 +41,18 @@ cd ~/cps-ae
 ```
 
 ## Step 1: Configure and build qemu, host kernel, and guest kernel
-First, build qemu
+First, build qemu.
 ```bash
 cd ~/cps-ae
 ./build-qemu.sh
 ```
-Then, build host kernel, install host kernel, and reboot to runn the CPS host kernel.
+Then, build host kernel, install host kernel, and reboot to run the CPS host kernel.
 ```bash
 cd ~/cps-ae
 ./build-reboot-host.sh
 sudo reboot
 ```
-Finally, after reboot of the machine, build & install guest kernel.
+Finally, after reboot of the host machine, build & install guest kernel.
 ```bash
 cd ~/cps-ae
 ./prepare.sh
@@ -59,9 +60,9 @@ cd ~/cps-ae
 ```
 
 ## Step 2: automated test(estimated 6 hours) and generate figures
-This step automated test and generate fig1, fig7, fig8, fig9, fig10, fig11, fig12, fig13
+This step automated test and generate fig1, fig7, fig8, fig9, fig10, fig11, fig12, fig13.
 
-For simplicity, you can run ./fig.sh to test all cases and generate all figures
+For simplicity, you can run ./fig.sh to test all cases and generate all figures.
 ```
 cd ~/cps-ae
 ./fig.sh
@@ -77,8 +78,8 @@ The result are stored in ~/cps-ae/figure-output.
 * fig12.eps: ~/cps-ae/figure-output/fig11/fig12.eps
 * fig13.eps: ~/cps-ae/figure-output/fig11/fig13.eps
 
-## (Optional): scripts for each figure
-For each figure, there exists a single script running test and generate figure.
+## (Optional step): scripts for each figure
+For each figure, there exists a single script running test and generate its corresponding figure.
 * fig1.eps: 
 ```bash
 cd ~/cps-ae
