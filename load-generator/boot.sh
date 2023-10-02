@@ -1,6 +1,4 @@
-#/mnt/xtq/qemu-5.0.0/aarch64-softmmu/qemu-system-aarch64 \
-#/mnt/xtq/vms/pvsched-vm/qemu-5.1.0/aarch64-softmmu/qemu-system-aarch64 \
-    qemu-system-aarch64 \
+sudo    qemu-system-aarch64 \
   -machine virt-4.0,accel=kvm,usb=off,dump-guest-core=off,gic-version=3 \
   --enable-kvm \
   -cpu host \
