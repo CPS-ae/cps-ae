@@ -7,7 +7,7 @@ cleanup() {
 trap cleanup EXIT
 
 
-sudo mount vm-kernel-xtq.img mnt
+sudo mount image/vm-kernel-xtq.img mnt
 
 cd mnt/parsec/pload-data-undercommit-motivation/
 
