@@ -1,7 +1,5 @@
 # only on arm-o AE machine
 mkdir -p image
-mv ~/rootfs.qcow2 image/
-mv ~/vm-kernel-xtq.img image/
 
 qemu-img create -f raw image/vm-kernel-xtq-1.img 4G
 qemu-img create -f raw image/vm-kernel-xtq-2.img 4G
